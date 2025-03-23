@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resume-Job Matcher README</title>
+
 </head>
 <body>
   <h1>Resume-Job Matcher</h1>
@@ -54,15 +54,6 @@ PORT=3001</code></pre>
       <div>
         <p>Note: To obtain a Gemini API key, visit <a href="https://makersuite.google.com/" target="_blank">Google AI Studio</a> and sign up for access.</p>
       </div>
-    </li>
-    <li>
-      <p>Create an <code>uploads</code> directory in the project root:</p>
-      <pre><code>mkdir uploads</code></pre>
-    </li>
-    <li>
-      <p>Create a <code>public</code> directory and move the <code>index.html</code> file into it:</p>
-      <pre><code>mkdir public
-# Move index.html to the public directory</code></pre>
     </li>
   </ol>
   
