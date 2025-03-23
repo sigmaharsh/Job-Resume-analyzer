@@ -114,17 +114,6 @@ PORT=3001</code></pre>
     <li><strong>Empty analysis results</strong>: Check if the uploaded documents contain extractable text</li>
   </ul>
   
-  <h2>Future Improvements</h2>
-  <ul>
-    <li>Add user accounts to save analysis history</li>
-    <li>Implement resume builder with AI suggestions</li>
-    <li>Add support for more file formats (RTF, HTML, etc.)</li>
-    <li>Create a batch analysis feature for multiple job descriptions</li>
-    <li>Implement keyword density analysis and visualization</li>
-  </ul>
-  
-  <h2>License</h2>
-  <p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
   
   <h2>Acknowledgments</h2>
   <ul>
