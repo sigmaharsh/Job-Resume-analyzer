@@ -230,7 +230,7 @@
             <div class="mb-8">
                 <h3 class="text-lg font-semibold text-gray-700 mb-3">Improvement Roadmap</h3>
                 <div class="bg-indigo-50 p-4 rounded-lg">
-                    <p class="text-gray-700" x-text="analysisResult.roadmap"></p>
+                    <div x-html="formatRoadmap(analysisResult.roadmap)" class="text-gray-700 space-y-2"></div>
                 </div>
             </div>
 
@@ -296,6 +296,47 @@
                     const maxSize = 5 * 1024 * 1024; // 5MB
 
                     return validTypes.includes(file.type) && file.size <= maxSize;
+                },
+
+                formatRoadmap(roadmapText) {
+                    if (!roadmapText) return '';
+
+                    // Split by different types of line breaks
+                    let paragraphs = roadmapText.split(/\n+|\r\n+/);
+
+                    // Filter out empty paragraphs and trim whitespace
+                    paragraphs = paragraphs.filter(p => p.trim().length > 0).map(p => p.trim());
+
+                    // Format the paragraphs with proper HTML
+                    let formattedText = '';
+
+                    paragraphs.forEach((paragraph, index) => {
+                        // Check if paragraph is a bullet point or numbered item
+                        if (paragraph.match(/^\d+\.\s/) || paragraph.match(/^[\-\*•]\s/)) {
+                            // If this is the first list item, start a new list
+                            if (index === 0 ||
+                                !(paragraphs[index - 1].match(/^\d+\.\s/) || paragraphs[index - 1].match(/^[\-\*•]\s/))) {
+                                formattedText += '<ul class="list-disc pl-5">';
+                            }
+
+                            // Add the list item
+                            formattedText += `<li>${paragraph.replace(/^[\d\-\*•]+\.\s*/, '').replace(/^[\-\*•]\s*/, '')}</li>`;
+
+                            // If this is the last list item or the next item isn't a list item, close the list
+                            if (index === paragraphs.length - 1 ||
+                                !(paragraphs[index + 1].match(/^\d+\.\s/) || paragraphs[index + 1].match(/^[\-\*•]\s/))) {
+                                formattedText += '</ul>';
+                            }
+                        } else if (paragraph.match(/^[A-Z][\w\s]+:/)) {
+                            // If it looks like a heading (e.g., "Education:", "Skills:")
+                            formattedText += `<h4 class="font-medium text-indigo-700 mt-3">${paragraph}</h4>`;
+                        } else {
+                            // Regular paragraph
+                            formattedText += `<p>${paragraph}</p>`;
+                        }
+                    });
+
+                    return formattedText;
                 },
 
                 async analyzeDocuments() {
